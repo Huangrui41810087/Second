@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Second</string>
+    <string name="hello">Hello swufe</string>
+    <string name="btn_login">Login</string>
+    <string name="logo">IBM</string>
+    <string name="btn_label">button</string>
+    <string name="hello_android">Hello Android</string>
+    <string name="point3_label">+3 points</string>
+    <string name="point2_label">+2 points</string>
+    <string name="point1_label">+1 points</string>
+    <string name="teama_label">TeamA</string>
+    <string name="teama_label1">TeamB</string>
+    <string name="reset_label">reset</string>
+</resources>

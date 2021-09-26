@@ -11,4 +11,9 @@
     <string name="teama_label">TeamA</string>
     <string name="teama_label1">TeamB</string>
     <string name="reset_label">reset</string>
+    <string name="RMB_label">Hello</string>
+    <string name="moneyD_lable">DOLLAR</string>
+    <string name="moneyE_lable">EURA</string>
+    <string name="moneyW_lable">WON</string>
+    <string name="open_lable">CONFIG</string>
 </resources>

@@ -23,6 +23,7 @@
         android:layout_height="50dp"
         android:layout_below="@id/textView"
         android:layout_marginLeft="20dp"
+        android:inputType="numberDecimal"
         android:hint="身高（米）" />
 
     <EditText

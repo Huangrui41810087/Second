@@ -2,7 +2,9 @@ package com.swufestu.second;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -42,8 +44,13 @@ public class SencondActivity extends AppCompatActivity {
         float newEuro=Float.parseFloat(euroText.getText().toString());
         float newWon=Float.parseFloat(wonText.getText().toString());
 
+        //保存数据到sp
+        saveToSP(newDollar,newEuro,newWon);
+
+
+
         Intent first = getIntent();
-       // first.putExtra("dollar_key2",newDollar);
+        // first.putExtra("dollar_key2",newDollar);
         //first.putExtra("euro_key2",newEuro);
         //first.putExtra("won_key2",newWon);
 
@@ -57,4 +64,15 @@ public class SencondActivity extends AppCompatActivity {
         //关闭当前窗口
         finish();
     }
+    private void saveToSP(float newDollar, float newEuro, float newWon) {
+        SharedPreferences sharedPreferences=getSharedPreferences("myrate",Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putFloat("dollar_rate", newDollar);
+        editor.putFloat("euro_rate", newEuro);
+        editor.putFloat("won_rate", newWon);
+        editor.apply();
+    }
+
 }
+
+

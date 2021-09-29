@@ -1,8 +1,10 @@
 package com.swufestu.second;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -50,6 +52,22 @@ public class BallActivity extends AppCompatActivity {
         //reset
         score2=0;
     }
+        showScore();
+
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("score1",score1);
+        outState.putInt("score2",score2);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        score1 = savedInstanceState.getInt("score1", 0);
+        score2 = savedInstanceState.getInt("score2", 0);
         showScore();
 
     }

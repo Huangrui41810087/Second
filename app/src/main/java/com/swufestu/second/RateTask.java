@@ -16,7 +16,7 @@ import java.util.List;
 
 
 public class RateTask implements Runnable{
-    private static final String TAG="MyThread";
+    private static final String TAG="MyTask";
     private Handler handler;
     Bundle bundle;
     List<String> retlist=new ArrayList<String>();

@@ -107,9 +107,4 @@ ListView mylist2;
         rateCalc.putExtra("rate",Float.parseFloat(detailStr));
         startActivity(rateCalc);
     }
-
-
-
-
-
 }

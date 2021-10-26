@@ -39,13 +39,14 @@
       android:id="@+id/score1"
       android:layout_marginTop="12dp"
       />
+
   <Button
       android:id="@+id/btn3"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:text="@string/point3_label"
       android:layout_marginTop="12dp"
-      android:onClick="click"/>
+      android:onClick="click"
+      android:text="@string/point3_label" />
   <Button
       android:id="@+id/btn2"
       android:layout_width="match_parent"

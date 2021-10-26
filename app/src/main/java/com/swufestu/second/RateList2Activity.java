@@ -3,6 +3,8 @@ package com.swufestu.second;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,15 +23,19 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class RateList2Activity extends AppCompatActivity implements  AdapterView.OnItemClickListener {
+public class RateList2Activity extends AppCompatActivity implements  AdapterView.OnItemLongClickListener
+,AdapterView.OnItemClickListener {
 
 ListView mylist2;
-    private static final String TAG = "Ratelist2Activity";
-
+    private static final String TAG = "list2";
+    ArrayList<HashMap<String,String>> rlist;
+    MyAdapter myAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rate_list2);
+
+
 
 
         //加载数据及适配器
@@ -50,7 +56,9 @@ ListView mylist2;
 
          mylist2=findViewById(R.id.mylist2);
          mylist2.setOnItemClickListener(this);
-       // mylist2.setAdapter(listItemAdapter);
+        mylist2.setOnItemLongClickListener(this);
+
+        // mylist2.setAdapter(listItemAdapter);
         ProgressBar bar = findViewById(R.id.progressBar);
 
         Handler handler = new Handler(Looper.myLooper()){
@@ -58,7 +66,7 @@ ListView mylist2;
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
             if(msg.what==9){
-                ArrayList<HashMap<String,String>> rlist = (ArrayList<HashMap<String,String>>)msg.obj;
+                rlist = (ArrayList<HashMap<String,String>>)msg.obj;
                 //List<String> list2=(List<String>) msg.obj;
                // SimpleAdapter listItemAdapter = new SimpleAdapter(RateList2Activity.this,
                 //        rlist,
@@ -66,7 +74,7 @@ ListView mylist2;
                   //      new String[]{"ItemTitle","ItemDetail"},
                    //     new int[]{R.id.itemTitle,R.id.itemDetail}
                      //   );
-                MyAdapter myAdapter=new MyAdapter(RateList2Activity.this,R.layout.list_item,rlist);
+                myAdapter=new MyAdapter(RateList2Activity.this,R.layout.list_item,rlist);
 
                 mylist2.setAdapter(myAdapter);
                 //切换显示状态
@@ -104,7 +112,28 @@ ListView mylist2;
         //打开新的页面，传入参数
         Intent rateCalc=new Intent(this,RateCalcActivity.class);
         rateCalc.putExtra("title",titleStr);
-        rateCalc.putExtra("rate",Float.parseFloat(detailStr));
+        rateCalc.putExtra("rate",detailStr);
         startActivity(rateCalc);
     }
+
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.i(TAG, "onItemLongClick: 长按处理");
+
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setTitle("提示")
+                .setMessage("请确认是否删除当前数据")
+                .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        Log.i(TAG, "onClick: 对话框处理事件");
+                        rlist.remove(mylist2.getItemAtPosition(position));
+                        myAdapter.notifyDataSetChanged();
+                    }
+                }).setNegativeButton("否",null);
+        builder.create().show();
+        return  false;
+        // return false;
+
+    }
+
 }
